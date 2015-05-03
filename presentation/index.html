@@ -17,6 +17,7 @@
 		<link rel="stylesheet" href="css/reveal.css">
 		<link rel="stylesheet" href="css/theme/black.css" id="`">
 
+
 		<!-- Code syntax highlighting -->
 		<link rel="stylesheet" href="lib/css/zenburn.css">
 
@@ -60,12 +61,16 @@
 				</section>
 				<section>
 					<h2>PROS</h2>
-				<li class="fragment">REAL BROWSERS</li>
-				<li class="fragment">CROSS PLATFORM</li>
+					<ul>
+						<li class="fragment">REAL BROWSERS</li>
+						<li class="fragment">CROSS PLATFORM</li>
+					</ul>
 					<h2>CONS</h2>
-					<li class="fragment">SLOW</li>
-					<li class="fragment">NEEDS ENVIRONMENT</li>
-					<li class="fragment">HARD TO MAINTAIN</li>
+					<ul>
+						<li class="fragment">SLOW</li>
+						<li class="fragment">NEEDS ENVIRONMENT</li>
+						<li class="fragment">HARD TO MAINTAIN</li>
+					</ul>
 				</section>
 				<section>
 					<h2>WEBDRIVER A.K.A Selenium</h2>
@@ -88,9 +93,11 @@
 				</section>
 				<section>
 					<h2>Existing E2E JS Frameworks</h2>
-					<li class="fragment">ng-scenarios <b class="fragment">=> @deprecated</b></li>
-					<li class="fragment">nightwatch.js <b class="fragment"> => no angular :(</b></li>
-					<li class="fragment">casper.js<b class="fragment"> => headless only</b></li>
+					<ul>
+						<li class="fragment">ng-scenarios <b class="fragment">=> @deprecated</b></li>
+						<li class="fragment">nightwatch.js <b class="fragment"> => no angular :(</b></li>
+						<li class="fragment">casper.js<b class="fragment"> => headless only</b></li>
+					</ul>
 				</section>
 				<section>
 					<h4>Protractor arch</h1>
@@ -102,29 +109,133 @@
 					<li>Angular selectors</li></div>
 					
 				</section>
-				<section data-markdown>
-					###installation
-					
+				<section>
+					<h4>installation</h1>
+					<pre><code>
+//Install protractor globally
+npm install protractor -g
 
-						//Install protractor globally
-						npm install protractor -g
+//Install protractor in current folder	
+npm install protractor
 
-						//Install protractor in current folder	
-						npm install protractor
+//Install protractor in current folder 
+//and save to package.json as dependency	
+npm install protractor --save
+						
+					</code></pre>
 
-						//Install protractor in current folder 
-						//and save to package.json as dependency	
-						npm install protractor --save
 
 				</section>
 				<section>
 					<h4>How To Run?</h4>
 					<div>
-						<li class="fragment">
-						Test script file (captain)
-						</li>
-						<li class="fragment">Config file (obvious)</li>
+						<ul>
+							<li class="fragment">
+							Test script file (captain)
+							</li>
+							<li class="fragment">Config file (obvious)</li>
+						</ul>
 					</div>
+				</section>
+				<section>
+					<h4>jasmine</h1>
+					<pre class="language-javascript">
+					<code>
+describe('some app feature', function() {
+  beforeEach(function() {
+    //DO SOME CODE BEFORE EACH "IT" BLOCK
+  });
+
+  it('should perform smth', function () {
+      //DO SOME TEST HERE
+    });
+
+  afterEach(function() {
+  	//DO SMTH AFTER EACH "IT" BLOCK
+  });
+  
+});
+					</code>
+					</pre>
+
+				</section>
+				<section>
+					<h4>cucumber</h4>
+					<pre><code>
+
+Feature: Homepage 
+  As a user
+  I want to visit app page
+  So that I can test protractor with cucumber
+
+  Scenario: Visit Calulator app
+    Given I am on the app page
+    Then I should see a "first value" input
+    And I should see a "do" button
+    And I should see a "logical operation" select
+						
+					</code></pre>
+
+
+				</section>
+				<section>
+					<h4>global vars</h4>
+					<ul>
+						<li class="fragment">browser</li>
+						<li class="fragment">element</li>
+						<li class="fragment">by</li>
+					</ul>
+					<pre class="language-javascript fragment">
+					<code>
+browser.get('www.google.com') // -> will open google com
+element(by.model("someModel")).click() // -> will find element 
+//with ng-model attr
+//and will click it
+					</code>
+					</pre>
+				</section>
+				<section>
+					<h4>selectors</h4>
+					<ul><li class="fragment">by.binding</li>
+					<li class="fragment">by.model</li>
+					<li class="fragment">by.repeater</li>
+					</ul>
+				</section>
+				<section>
+					<h4>config file</h4>
+					<pre>
+						<code>
+//config.js
+
+exports.config = {
+  
+  directConnet: false,
+  seleniumAddress : "http://localhost:4444/wd/hub",
+  specs: [
+    '../spec.js'
+  ],
+
+  capabilities: {
+    'browserName': 'chrome'
+  }
+};
+
+						</code>
+
+					</pre>
+				</section>
+				<section>
+					<h1>code walk-through</h1>
+				</section>
+				<section>
+					<h4>summary</h4>
+					<ul>
+						<li class="fragment">angular support</li>
+						<li class="fragment">can be used with phantom js on gulp "watch" phase</li>
+						<li class="fragment">not supporting mannually bootstraped angular</li>
+						<li class="fragment">debugging promises is sometimes pain</li>
+						<li class="fragment">slow as every real browser tests</li>
+					</ul>
 				</section>
 			</div>
 
